@@ -8,7 +8,7 @@ DATERANGE =[date.today().strftime('%B %d'), (date.today() - timedelta(7)).strfti
 SUBJECT = 'Top post from {0} to {1}!'.format(DATERANGE[1], DATERANGE[0])
 
 def login():
-    reddit = praw.Reddit("caps-bot", user_agent=USERAGENT)
+    reddit = praw.Reddit("wotw", user_agent=USERAGENT)
     print("Logged in as: ", reddit.user.me())
     return reddit
 

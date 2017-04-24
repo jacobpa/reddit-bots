@@ -6,7 +6,7 @@ USERAGENT = "Wallpaper of the Week bot for /r/ComicWalls v1.0.0"
 
 
 def login():
-    reddit = praw.Reddit("yakusha_", user_agent=USERAGENT)
+    reddit = praw.Reddit("wotw", user_agent=USERAGENT)
     print("Logged in as: ", reddit.user.me())
     return reddit
 
