@@ -1,3 +1,5 @@
+'''A bot which will send the top post in /r/ComicWalls for the week it was run to the modmail.'''
+
 from datetime import date, timedelta
 import praw
 

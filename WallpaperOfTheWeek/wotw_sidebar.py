@@ -1,3 +1,5 @@
+'''A bot which will grab the top post in /r/ComicWalls for the week it was run, and will replace the old WOTW in the 
+sidebar.'''
 import praw
 
 USERAGENT = "Wallpaper of the Week bot for /r/ComicWalls v1.0.0"
