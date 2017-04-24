@@ -29,8 +29,7 @@ def task(reddit, replied):
             print("Wrong comment found in ", comment.id)
             comment.reply(REPLY_MESSAGE)
             replied.append(comment.id)
-            # Sleep to avoid commenting too quickly
-            time.sleep(3)
+
             with open("replied.txt", "a+") as f:
                 f.write(comment.id + "\n")
 
