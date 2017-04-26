@@ -4,37 +4,34 @@ Keep bot information in a praw.ini either in the same directory as this script, 
 
 import os
 import re
-import time
 import praw
 
-USERAGENT = "CapsBot v1.1.0 by /u/Yakusha_"
+USERAGENT = "CapsBot v1.2.0 by /u/Yakusha_"
 REPLY_MESSAGE = "Just remember ALL CAPS when you spell the man name."
 
 
 def login():
-    r = praw.Reddit("caps-bot", user_agent=USERAGENT)
-    print("Logged in!")
-    return r
+        r = praw.Reddit("caps-bot", user_agent=USERAGENT)
+        return r
+
 
 
 def find_word(string):
-    regex = r'\b(mf doom|mf Doom|mf DOOM|Mf doom|Mf Doom|Mf DOOM|MF doom|MF Doom|Doom|doom)\b'
+    regex = r'\b(mf doom|mf Doom|mf DOOM|Mf doom|Mf Doom|Mf DOOM|MF doom|MF Doom| Doom| doom)\b'
     return re.compile(regex).findall(string)
 
 
 def task(reddit, replied):
-    print("Getting twenty comments...")
-    for comment in reddit.subreddit('hiphopheads').comments(limit=20):
+    for comment in reddit.subreddit('yakushatest').comments(limit=20):
         if find_word(comment.body) and comment.id not in replied and comment.author != reddit.user.me():
-            print("Wrong comment found in ", comment.id)
             comment.reply(REPLY_MESSAGE)
             replied.append(comment.id)
 
             with open("replied.txt", "a+") as f:
                 f.write(comment.id + "\n")
 
-    print("Sleeping for ten seconds...")
-    time.sleep(10)
+            with open("comments.txt", "a+") as f:
+                f.write(comment.id + " - " + comment.body + "\n")
 
 
 def replied_comments():
@@ -52,6 +49,5 @@ def replied_comments():
 reddit = login()
 
 replied_to = replied_comments()
-print(replied_to)
 
 task(reddit, replied_to)
